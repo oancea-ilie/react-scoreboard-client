@@ -1,25 +1,66 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import AddPlayerForm from "./Components/AddPlayerForm";
+import Header from "./Components/Header";
+import Player from "./Components/Player";
 
-function App() {
+export default ()=>{
+
+  let [players, setPlayers] = useState([
+    {
+      name:"Player1",
+      score:0,
+      id:1
+    },
+    
+    {
+      name:"Player2",
+      score:0,
+      id:2
+    },
+    {
+      name:"Player3",
+      score:0,
+      id:3
+    }
+  ]);
+
+
+  //handle score change
+
+  let handleScoreChange=(index,delta)=>{
+
+    setPlayers((prev)=>{
+
+      const updatedPlayers=[...prev];
+
+
+      const updatedPLayer={...updatedPlayers[index]};
+
+      updatedPLayer.score+=delta;
+
+      updatedPlayers[index]=updatedPLayer;
+
+      return updatedPlayers;
+    })
+
+  }
+
+
+
+
+  //handle add player
+
+  //handle get highscore
+
+  //handle removeplayer
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+     <main>
+       <Header players ={players}/>
+       {/* <Player/>
+       <AddPlayerForm/> */}
+     </main>
+  )
 
-export default App;
+}
